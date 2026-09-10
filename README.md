@@ -26,7 +26,9 @@ cars_6_to_10
 cars_6_to_10.loc[:, ['Model','mpg','cyl','hp','gear']]
 ```
 ## Programming Problem B - Model Lookup
-* First, we were tasked to create a 10 x 10 array containing the first 100 positive integers. This can be done by inputting this code into Python, followed by the variable itself, in order for the array to print:
+* This programming problem contains two parts, with one for demonstration of the general idea of the function, while the other for further understanding.  
+        - Display the complete row for Toyota Corolla.  
+        - For Pontiac Firebird, display only Model, mpg, hp, and wt.  
 ```python
 A = np.arange(1,101,1)
 A
