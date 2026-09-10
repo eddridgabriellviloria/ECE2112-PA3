@@ -6,26 +6,24 @@ This is the repository for the THIRD programming assignment for ECE 2112, Advanc
 
 
 ## Programming Problem A - Positional and Label-Based Slicing
-* The programmer was tasked to create a normalized array by using the formula `Z = (X - ¯x)/σ` on a 5x5 integer ndarray named X.
-* The programmer was also tasked to make the array with this code:
+* This programming problem is divided in 3 parts, each having a specific task:  
+      - Display the shape and complete list of column of names of cars.  
+      - Using positional slicing, create cars 6 to 10 containing rows 6 through 10 of the dataset, where
+the first data row is row 1.  
+      - From cars_6_to_10, display only the columns model, mpg, cyl, hp, and gear, in that order.
+* The first task was made by simply calling in the CSV file of the list itself (`cars.csv`). This can be done by using the command `pd.read_csv()`. Make sure the CSV file is in the same folder as the program itself:
 ```python
-np.random.seed(2112)
-X = np.random.randint(10, 101, size=(5, 5))
+cars = pd.read_csv('cars.csv')
+cars
 ```
-* In order to implement the given formula to the array, and equate it under the name X_Normalized, I used this code in order to do so.
+* The second item was done by using the command `.iloc[]` on the dataset that the programmer possesses, as noted in the requirements given in the instructions. Since the students must call in specifically row 6 to 10, the programmer must use a specific way to do so. This can be done by typing in the specific row numbers being asked in the square brackets. All the while, we equate this to cars_6_to_10, so that the program will recognize the dataset under this label.
 ```python
-X_Normalized = (X-X.mean())/(X.std())
-X_Normalized
+cars_6_to_10 = cars.iloc[[6, 7, 8, 9, 10]]
+cars_6_to_10
 ```
-* Afterward, we were then tasked to display the array X, alongside the normalized mean and standard deviation, using via using these codes:
+* Finally, we were asked display specific information in each of the rows called in here. Apart from the model, this dataset should include the mpg, cyl, hp, and the gear in that order. This can be done via `.loc[,[]]`, to which the first part comprises the rows to be included in this data extraction, while the second part comprises of the specific information to be included in said rows. With all of this put together, we end up with this code.
 ```python
-X
-X_Normalized.mean()
-X_Normalized.std()
-```
-* Finally, we were asked to save the normalized array as a `.npy` file. In order to do so, I used this code for the program to save the normalized array as a `.npy` file.
-```python
-np.save("X_normalized",X_Normalized)
+cars_6_to_10.loc[:, ['Model','mpg','cyl','hp','gear']]
 ```
 ## Programming Problem B - Model Lookup
 * First, we were tasked to create a 10 x 10 array containing the first 100 positive integers. This can be done by inputting this code into Python, followed by the variable itself, in order for the array to print:
