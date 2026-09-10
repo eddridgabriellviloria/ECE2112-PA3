@@ -16,6 +16,10 @@ the first data row is row 1.
 cars = pd.read_csv('cars.csv')
 cars
 ```
+* As an additional requirement, the programmer also used `cars.shape` in order to call in the shape of the dataframe.
+```python
+cars.shape
+```
 * The second item was done by using the command `.iloc[]` on the dataset that the programmer possesses, as noted in the requirements given in the instructions. Since the students must call in specifically row 6 to 10, the programmer must use a specific way to do so. This can be done by typing in the specific row numbers being asked in the square brackets. All the while, we equate this to cars_6_to_10, so that the program will recognize the dataset under this label.
 ```python
 cars_6_to_10 = cars.iloc[[6, 7, 8, 9, 10]]
@@ -26,62 +30,39 @@ cars_6_to_10
 cars_6_to_10.loc[:, ['Model','mpg','cyl','hp','gear']]
 ```
 ## Programming Problem B - Model Lookup
-* This programming problem contains two parts, with one for demonstration of the general idea of the function, while the other for further understanding.  
+* This programming problem contains two parts, with one for demonstration of the general idea of the function, while the other is for further understanding. The students are also required to use boolean indexing on the `model` column for this programming problem.  
         - Display the complete row for Toyota Corolla.  
-        - For Pontiac Firebird, display only Model, mpg, hp, and wt.  
+        - For Pontiac Firebird, display only model, mpg, hp, and wt.
+* As an additional requirement, the students were also tasked to store these results in `toyota` and `pontiac` as well, so we must equate the two results to each of these respectively as well.
+* This code is used to display the complete row for Toyota Corolla. We simply don't specify any specific category of information, where python will assume to display everything present in the row:
 ```python
-A = np.arange(1,101,1)
-A
+toyota = cars.loc[(cars['Model']=='Toyota Corolla')]
+toyota
 ```
-* After this, we are then tasked to cube every element in the array, which will be under a new name called `C`. This can be done by inputting this code after the former.
+* As for the second item, to display the row of the Pontiac Firebird with only the model, mpg, hp, and wt, we simply use the same boolean indexing command, but this time the programmer must specify the exact columns present in the dataset. This is inserted after the comma after `(cars['Model']=='Toyota Corolla')`. Doing so will let us form this code:
 ```python
-C = A.reshape(10,10)
-C = C*C*C
-C
-```
-* Lastly, we were tasked to create a Boolean condition on array C to obtain all the cubed elements that are divisible by 4. This new array would be labeled as `div_by_4`, and will be saved as a `.npy` file. We will be using this code in order to achieve its goal:
-```python
-div_by_4 = C[C%4==0]
-div_by_4
-```
-* This will then be followed by this code in a separate cell:
-```python
-np.save("div_by_4",div_by_4)
+pontiac = cars.loc[(cars['Model']=='Pontiac Firebird'),['Model','mpg','hp','wt']]
+pontiac
 ```
 ## Programming Problem C - Multi-Model Subsetting
-* We were tasked to create a 6 x 6 array, labeled as `S`, containing the squares of the first 36 positive integers in increasing row-major order. This can be done by inputting this series of code into Python:
+* On this last programming problem, the students are tasked to create a dataframe named `selected_cars`, which will only record three models, alongside their mpg, cyl, hp, and gear: Datus 710, Lotus Europa, and Ferrari Dino.
+* The programmers must select these rows strictly by their models. They can do this using logic operators, specifically "or", which is denoted as `|`. We can use this in the same code format we used from the second programming problem in order to include more than one model. However, we must use the code `(cars['Model']=='')` multiple times inside the square bracket in order to call in all three desired models. The specific columns to include are not required to be typed in multiple times for each call of these specific car models. Combining all of this, we end up with this code:
 ```python
-S = np.arange(1,37,1)
-S = S.reshape(6,6)
-S = S*S
-S
+selected_cars = cars.loc[(cars['Model']=='Datsun 710')|(cars['Model']=='Lotus Europa')|(cars['Model']=='Ferrari Dino'),['Model','mpg','cyl','hp','gear']]
+selected_cars
 ```
-* Next, we were then tasked to compute the mean of all elements of S, labeled as `S_mean`. This can be done via this code here:
+* As an additional requirement, the programmer also used `cars.shape` in order to call in the shape of the dataframe.
 ```python
-S_mean = S.mean()
-S_mean
-```
-* Lastly, we are tasked to filter out the array, making it so that it will only select elements strictly greater than the computed mean, `S_mean` in this case. This can be done with Boolean conditions. This new array will thus be named and saved into a `.npy` file as `above_mean`, all done with this code:
-```python
-above_mean = S[S>S_mean]
-above_mean
-
-np.save("above_mean",above_mean) #This is written on a separate cell
+selected_cars.shape
 ```
 ## Versions
-**Aug. 27, 2026**  
-* Version 0.1 (Not listed in GitHub commits unfortunately)  
-    - Development of PA2 initiated.
+**Sept. 04, 2026**  
+* Version 0.1 (Date of commit listed as September 09, 2026)  
+    - Development of PA3 initiated.
+    - Solutions for Programming Problems A and B are fully functional.
  
-**Aug. 30, 2026**  
-* Version 0.2 (Not listed in GitHub commits unfortunately)  
-    - Programming Problem A development finished.
-* Version 0.3 (Not listed in GitHub commits unfortunately)  
-    - Programming Problem B development finished.
+**Sept. 10, 2026**
 * Version 1.0
-    - Programming Problem C development finished.
-    - Entire project fully published on GitHub
-
-**Aug. 27, 2026**
+    - Solution for Programming Problem C fully functional.
 * Version 1.1
-    - Hotfix on the missing 'np.save()' for `above_mean` on Programming Problem C
+    - Commands for calling in the shape of `cars` and `selected_cars` added.
